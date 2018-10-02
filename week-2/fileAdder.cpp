@@ -32,7 +32,7 @@ int main()
     inputFile.open(fileName);
     if ( inputFile.fail() ) {
         // Let the user know that file couldn't be accessed
-        cout << "could not access file." << endl;
+        cout << "could not access file" << endl;
     } else {
         int numberToAdd;
         int total;
