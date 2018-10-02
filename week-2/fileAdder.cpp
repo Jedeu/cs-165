@@ -43,7 +43,7 @@ int main()
         }
         // Close the inputFile
         inputFile.close();
-
+        
         // Open a file stream, write the total, and close the file
         outputFile.open(outputFileName);
         outputFile << total;
