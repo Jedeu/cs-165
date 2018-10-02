@@ -22,17 +22,20 @@ int main()
     cout << "How many integers would you like to enter?" << endl;
     cin >> numOfIntegers;
     
-    // Allow the user to input these integers
+    // Handle the case where user only wants to input one integer
     if ( numOfIntegers > 1 ) {
         cout << "Please enter " << numOfIntegers << " integers." << endl;
     } else {
         // Specifications say that we can assume numOfIntegers is an integer >=1
+        // So we only need to worry about this one edge case
         cout << "Please enter an integer." << endl;
     }
     // Store the first integer as both min and max value to start
     cin >> minValue;
     maxValue = minValue;
-
+    
+    // Loop through the number of integers we need to compare against except for
+    // the first
     for( int i = 1; i < numOfIntegers; i++ ) {
         // Store input as the number to compare
         cin >> currentValue;
