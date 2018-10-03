@@ -31,15 +31,19 @@ int main()
     
     // Try and open the file
     inputFile.open(fileName);
-    if ( inputFile.fail() ) {
+    if ( inputFile.fail() ) 
+    {
         // Let the user know that file couldn't be accessed
         cout << "could not access file" << endl;
-    } else {
+    } 
+    else 
+    {
         int numberToAdd = 0;
         int total = 0;
         
         // Loop through values in the file and add them to the total
-        while (inputFile >> numberToAdd) {
+        while (inputFile >> numberToAdd) 
+        {
             total += numberToAdd;
         }
         // Close the inputFile
