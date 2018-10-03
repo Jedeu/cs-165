@@ -6,7 +6,6 @@
  **              Output: distance the object has fallen given time and gravity
  **********************************************************************************/
 
-#include <iostream>
 #include <cmath>
 
 using std::pow;
