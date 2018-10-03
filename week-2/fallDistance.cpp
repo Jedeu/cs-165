@@ -13,6 +13,7 @@ using std::pow;
 double fallDistance( double time )
 {
     const double GRAVITY = 9.8;
+    // Just plugging in the formula for distance fallen
     return (GRAVITY * pow(time, 2))/2;
 }
 
