@@ -7,7 +7,7 @@
 ***              Output: The number of steps it took to complete the sequence
 ***********************************************************************************/
 
-int hailStone( int start )
+int hailstone( int start )
 {
     // Return 0 steps if the start is already 1
     if ( start == 1 ) 
