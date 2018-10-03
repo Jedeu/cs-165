@@ -30,22 +30,29 @@ int main()
     int guessedNum;
     
     // Keep taking in guesses until the guess is right
-    while ( guessedNum != numToGuess ) {
+    while ( guessedNum != numToGuess ) 
+    {
         cin >> guessedNum;
         // Increment the guess by 1 for every attempt
         numOfGuesses += 1;
         // Give a hint to the user depending on the guess
-        if ( guessedNum > numToGuess ) {
+        if ( guessedNum > numToGuess ) 
+        {
             cout << "Too high - try again." << endl;
-        } else if ( guessedNum < numToGuess ) {
+        } 
+        else if ( guessedNum < numToGuess ) 
+        {
             cout << "Too low - try again." << endl;
         }
     }
     
     // Output the number of attempts made
-    if ( numOfGuesses > 1 ) {
+    if ( numOfGuesses > 1 ) 
+    {
         cout << "You guessed it in " << numOfGuesses << " tries." << endl;
-    } else {
+    } 
+    else 
+    {
         // Fix the program's grammar :)
         cout << "You guessed it in 1 try." << endl;
     }
