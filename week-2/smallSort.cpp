@@ -16,7 +16,8 @@ void smallSort( int &first, int &second, int &third )
     
     // Swap the position of third and second
     // if second is bigger than third
-    if ( second > third ) {
+    if ( second > third ) 
+    {
         temp = second;
         second = third;
         third = temp;
@@ -24,7 +25,8 @@ void smallSort( int &first, int &second, int &third )
     
     // Swap the position of first and third
     // if first is bigger than third
-    if ( first > third ) {
+    if ( first > third ) 
+    {
         temp = third;
         third = first;
         first = temp;
@@ -32,7 +34,8 @@ void smallSort( int &first, int &second, int &third )
     
     // Swap the position of first and second
     // if first is bigger than second
-    if ( first > second ) {
+    if ( first > second ) 
+    {
         temp = first;
         first = second;
         second = temp;
