@@ -1,6 +1,7 @@
 /********************************************************************************* Author: Jed Piezas
 ** Date: October 1 2018
-** Description:  Prompts the user to enter the name of a file containing numbers**               delimited by a single line. 
+** Description:  Prompts the user to enter the name of a file containing numbers
+**               delimited by a single line. 
 **               If it is able to read the file, it will sum the numbers and 
 **               notify the user that it outputted the sum to sum.txt. 
 **               Otherwise, it will print that it was unable to read the file.
@@ -34,8 +35,8 @@ int main()
         // Let the user know that file couldn't be accessed
         cout << "could not access file" << endl;
     } else {
-        int numberToAdd;
-        int total;
+        int numberToAdd = 0;
+        int total = 0;
         
         // Loop through values in the file and add them to the total
         while (inputFile >> numberToAdd) {
