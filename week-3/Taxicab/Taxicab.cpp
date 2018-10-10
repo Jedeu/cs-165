@@ -66,6 +66,8 @@ int Taxicab::getDistanceTraveled()
 void Taxicab::moveX(int xDist)
 {
     xCoordinate += xDist;
+    // We use abs to calculate the distance regardless
+    // of negative inputs
     totalDistance += abs(xDist);
 }
 
@@ -76,5 +78,7 @@ void Taxicab::moveX(int xDist)
 void Taxicab::moveY(int yDist)
 {
     yCoordinate += yDist;
+    // We use abs to calculate the distance regardless
+    // of negative inputs
     totalDistance += abs(yDist);
 }
