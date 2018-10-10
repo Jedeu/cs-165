@@ -21,6 +21,7 @@ class Team
         Player powerForward;
         Player center;
     public:
+        Team();
         Team(Player, Player, Player, Player, Player);
         Player getPointGuard();
         Player getShootingGuard();

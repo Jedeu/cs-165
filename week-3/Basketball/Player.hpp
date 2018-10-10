@@ -29,9 +29,9 @@ class Player
         int getPoints();
         int getRebounds();
         int getAssists();
-        void setPoints();
-        void setRebounds();
-        void setAssists();
+        void setPoints(int);
+        void setRebounds(int);
+        void setAssists(int);
         bool hasMorePointsThan(Player);
 };
 #endif
