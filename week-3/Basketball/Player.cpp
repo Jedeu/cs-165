@@ -99,7 +99,6 @@ void Player::setAssists(int newAssists)
  *****************************************************************/
 bool Player::hasMorePointsThan(Player otherPlayer)
 {
-    // Could definitely improve this by passing the otherPlayer by
-    // reference instead of copying the entire object
+    // Uses getter from otherPlayer's object to compare points
     return points > otherPlayer.getPoints();
 }
