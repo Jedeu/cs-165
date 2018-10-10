@@ -7,6 +7,9 @@
  ************************************************************************************/
 
 #include <cmath>
+#include "Taxicab.hpp"
+
+using std::abs;
 
 /******************************************************************
  * This is the constructor function when no parameters are defined.
@@ -25,12 +28,13 @@ Taxicab::Taxicab()
  * Sets all coordinates and total distance according to the
  * parameters passed in.
  * ***************************************************************/
-Taxicab::Taxicab(xCoord, yCoord, totalDist)
+Taxicab::Taxicab(int xCoord, int yCoord, int totalDist)
 {
     xCoordinate = xCoord;
     yCoordinate = yCoord;
     totalDistance = totalDist;
 }
+
 /******************************************************************
  * This function serves as a getter for the xCoordinate member
  * ***************************************************************/
@@ -59,7 +63,7 @@ int Taxicab::getDistanceTraveled()
  * This function moves the Taxicab xDist units along the x-axis
  * and increments the totalDistance traveled
  * ***************************************************************/
-void moveX(int xDist)
+void Taxicab::moveX(int xDist)
 {
     xCoordinate += xDist;
     totalDistance += abs(xDist);
@@ -69,7 +73,7 @@ void moveX(int xDist)
  * This function moves the Taxicab yDist units along the y-axis
  * and increments the totalDistance traveled
  * ***************************************************************/
-void moveY(int yDist)
+void Taxicab::moveY(int yDist)
 {
     yCoordinate += yDist;
     totalDistance += abs(yDist);
