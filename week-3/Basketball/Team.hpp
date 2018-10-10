@@ -20,6 +20,8 @@ class Team
         Player smallForward;
         Player powerForward;
         Player center;
+        
+        Player makeNewPlayer();
     public:
         Team();
         Team(Player, Player, Player, Player, Player);
@@ -28,11 +30,11 @@ class Team
         Player getSmallForward();
         Player getPowerForward();
         Player getCenter();
-        void setPointGuard();
-        void setShootingGuard();
-        void setSmallForward();
-        void setPowerForward();
-        void setCenter();
+        void setPointGuard(Player);
+        void setShootingGuard(Player);
+        void setSmallForward(Player);
+        void setPowerForward(Player);
+        void setCenter(Player);
         int totalPoints();
 };
 #endif

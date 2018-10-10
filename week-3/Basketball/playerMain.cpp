@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Player.hpp"
+#include "Team.hpp"
 
 using std::cout;
 using std::endl;
@@ -17,5 +18,17 @@ int main()
     p5.setRebounds(12);
 
     cout << p5.getRebounds() << endl;
+
+    Team team1(p1, p2, p3, p4, p5);
+
+    Player p = team1.getShootingGuard();
+    cout << p.getName() << endl;
+    cout << team1.totalPoints() << endl;
+
+    Team team2;
+
+    Player pg2 = team2.getPointGuard();
+    cout << pg2.getName() << endl;
+    cout << pg2.getPoints() << endl;
     return 0;
 }
