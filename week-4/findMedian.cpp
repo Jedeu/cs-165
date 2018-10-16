@@ -23,7 +23,7 @@ double findMedian(int arr[], int size)
         int num2 = arr[(size/2)]; 
         median = (num1 + num2) / 2.0;
     } else {
-        // Integer division of 5/2
+        // Integer division of size/2
         // will round the result down to the correct 
         // index of the array
         median = arr[(size/2)]; 
