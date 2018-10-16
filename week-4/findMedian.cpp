@@ -1,6 +1,6 @@
 /************************************************************************************ 
  ***** Author: Jed Piezas
- ***** Date: October 9 2018
+ ***** Date: October 15 2018
  ***** Description:  Takes an array of integers and the array's size to determine the
  *****               median of all the numbers. Able to handle an odd number and an
  *****               even number of integers in the array.
