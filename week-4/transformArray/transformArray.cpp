@@ -6,11 +6,6 @@
  ******               the number in its respective order
  *************************************************************************************/
 
-#include <iostream>
-
-using std::cout;
-using std::endl;
-
 void transformArray(int*& arr, int size)
 {
     int DOUBLED_SIZE = size * 2;
