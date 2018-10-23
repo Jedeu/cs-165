@@ -6,7 +6,6 @@
 **************************************************************************************/
 
 #include "Box.hpp"
-using std::endl;
 
 void boxSort(Box array[], int size)
 {
@@ -14,13 +13,16 @@ void boxSort(Box array[], int size)
     bool madeAswap;
 
     do {
+        // Loop until no swaps are made while traveling through the array
         madeAswap = false;
         for (int count = 0; count < (size - 1); count++) {
+            // Swap the place of two Boxes if the former's volume is less than
+            // the latter's
             if (array[count].calcVolume() < array[count + 1].calcVolume()) {
                 temp = array[count + 1];
                 array[count + 1] = array[count];
                 array[count] = temp;
-                madeAswap=true;
+                madeAswap = true;
             }
         }
     } while (madeAswap);
