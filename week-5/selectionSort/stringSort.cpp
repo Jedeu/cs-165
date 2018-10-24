@@ -64,9 +64,5 @@ bool isBefore(string first, string second)
     string upcasedSecond = convertToUpper(second);
     
     // Do a comparison to see which string takes precedence
-    if (upcasedFirst < upcasedSecond) {
-        return true;
-    } else {
-        return false;
-    } 
+    return upcasedFirst < upcasedSecond;
 }
