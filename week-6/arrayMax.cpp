@@ -15,6 +15,7 @@ int arrayMax(int arr[], int size)
     if (size == 1) {
         return arr[0];
     }
+    // Recursively evaluate values in the array
     return findMax(arr[size-1], arrayMax(arr, size - 1));
 }
 
