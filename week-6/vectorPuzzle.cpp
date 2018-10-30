@@ -50,18 +50,22 @@ bool isSolveable(vector<int> nums, int position)
     // provided that we don't revisit a spot and that
     // we don't go out of bounds of the vector.
     if (canMoveRightWithoutRepeat(nums, position)) {
+
         int newPosition = position + currentVal;
         // Mark our current spot as visited by making
-        // the integer negative
+        // the integer negative and calculate the new position
         nums[position] = currentVal * -1;
         // Recursive call until we arrive at the base case
         return isSolveable(nums, newPosition);
+
     // This is the same as the logic above, except we try
     // and move left if we can't go to the right of the vector
     } else if (canMoveLeftWithoutRepeat(nums, position)) {
+
         int newPosition = position - currentVal;
         nums[position] = currentVal * -1;
         return isSolveable(nums, newPosition);
+
     } else {
         // We've reached a point where moving left or right results
         // in visited spots or is out of bounds. The puzzle cannot
