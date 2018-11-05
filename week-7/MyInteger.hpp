@@ -17,9 +17,11 @@ class MyInteger
     private:
         int* pInteger;
     public:
+        // = operator override
         MyInteger& operator=(const MyInteger& right);
         MyInteger();
         MyInteger(int);
+        // Copy constructor to handle dynamic integers
         MyInteger(const MyInteger&);
         ~MyInteger();
         int getMyInt() const;
