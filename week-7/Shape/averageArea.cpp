@@ -6,13 +6,11 @@
  *************************************************************************************/
 
 #include <vector>
-#include <memory>
 #include "Shape.hpp"
 
 using std::vector;
-using std::shared_ptr;
 
-double averageArea(vector<shared_ptr<Shape>> shapes)
+double averageArea(vector<Shape*>& shapes)
 {       
     double totalArea = 0;
     // Loop through the vector to get the total area
