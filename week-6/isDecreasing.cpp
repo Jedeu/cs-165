@@ -16,7 +16,7 @@ bool isDecreasing(int arr[], int size)
     
     // Check that each integer is off by one as we
     // decrement the size. If it isn't, return false
-    if ((arr[size - 1] - 1) != arr[size-2]) {
+    if (arr[size - 1] > arr[size-2]) {
         return false;
     }
     
