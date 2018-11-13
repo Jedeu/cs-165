@@ -31,15 +31,15 @@ class ValSet
         // Instance methods
         int size() const;
         bool isEmpty();
-        bool contains(T);
+        bool contains(T) const;
         void add(T);
         void remove(T);
         vector<T> getAsVector();
         // Operator overloads
         ValSet& operator=(const ValSet& right);
-        ValSet& operator+(const ValSet& right);
-        ValSet& operator*(const ValSet& right);
-        ValSet& operator/(const ValSet& right);
+        ValSet<T> operator+(const ValSet& right);
+        ValSet<T> operator*(const ValSet& right);
+        ValSet<T> operator/(const ValSet& right);
     private:
         int numOfElements;
         int currentSize;
@@ -90,9 +90,9 @@ bool ValSet<T>::isEmpty()
 }
 
 template <class T>
-bool ValSet<T>::contains(T element)
+bool ValSet<T>::contains(T element) const
 {
-    for (int i = 0; i < numOfElements; i++) {
+    for (int i = 0; i < numOfElements; i++) { 
         if (arrayPointer[i] == element) {
             return true;
         }
@@ -130,18 +130,16 @@ void ValSet<T>::add(T element)
 template <class T>
 void ValSet<T>::remove(T element)
 {
-    if (this->contains(element)) {
-        for (int i = 0; i < currentSize; i++) {
-            if(arrayPointer[i] == element) {
-                for (int j = i; j < currentSize - 2; j++) {
-                    arrayPointer[j] = arrayPointer[j + 1];
-                } 
-                arrayPointer[currentSize - 1] = T();
-                numOfElements -= 1;
-                break;
-            }
+    for (int i = 0; i < numOfElements; i++) {
+        if(arrayPointer[i] == element) {
+            for (int j = i; j < numOfElements - 1; j++) {
+                arrayPointer[j] = arrayPointer[j + 1];
+            } 
+            numOfElements -= 1;
+            arrayPointer[numOfElements] = T();
+            break;
         }
-    }
+    } 
 }
 
 template <class T>
@@ -152,4 +150,51 @@ vector<T> ValSet<T>::getAsVector()
         newVect.push_back(arrayPointer[i]);
     }
     return newVect;
+}
+
+template <class T>
+ValSet<T> ValSet<T>::operator+(const ValSet& right)
+{
+    ValSet<T> unionSet = *this;
+    for (int j = 0; j < right.size(); j++) {
+        unionSet.add(right.arrayPointer[j]);
+    }
+    return unionSet; 
+}
+
+template <class T>
+ValSet<T> ValSet<T>::operator*(const ValSet& right)
+{
+    ValSet<T> intersectionSet = *this;
+    T itemToCompare;
+    for (int i = 0; i < intersectionSet.size(); i++) {
+        itemToCompare = intersectionSet.arrayPointer[i];
+        if (!right.contains(itemToCompare)) {
+            intersectionSet.remove(itemToCompare);
+            i -= 1;
+        }
+    }
+    return intersectionSet;
+}
+
+template <class T>
+ValSet<T> ValSet<T>::operator/(const ValSet& right)
+{
+    ValSet<T> intersectionSet = *this * right;
+    ValSet<T> differenceSet = *this;
+    T itemToCompare;
+    for (int i = 0; i < differenceSet.size(); i++) {
+        itemToCompare = differenceSet.arrayPointer[i];
+        if (intersectionSet.contains(itemToCompare)) {
+            differenceSet.remove(itemToCompare);
+            i -= 1;
+        }
+    }
+    for (int j = 0; j < right.size(); j++) {
+        itemToCompare = right.arrayPointer[j];
+        if (!intersectionSet.contains(itemToCompare)) {
+            differenceSet.add(itemToCompare);
+        }
+    }
+    return differenceSet;
 }

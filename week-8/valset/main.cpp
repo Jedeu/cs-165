@@ -8,26 +8,35 @@ using std::vector;
 
 int main()
 {
-    ValSet<char> mySet;
-    mySet.add('A');
-    mySet.add('B');
-    mySet.add('C');
-    mySet.add('D');
-    cout << "Size of mySet: " << mySet.size() << endl;
-    cout << "mySet has the number A? " << mySet.contains('A') << endl;
-    cout << "mySet is empty? " << mySet.isEmpty() << endl;
-    cout << "Now about to remove element from mySet" << endl;
-    mySet.remove('A');
-    cout << "Going to try to remove A again from mySet" << endl;
-    mySet.remove('A');
-    cout << "mySet has the number 1? " << mySet.contains('A') << endl;
+    ValSet<double> mySet;
+    mySet.add(1.2);
+    mySet.add(2.3);
+    mySet.add(3.4);
+    mySet.add(4.5);
     cout << "mySet is empty? " << mySet.isEmpty() << endl;
     cout << "mySet's new size? " << mySet.size() << endl;
-    ValSet<char> mySet2 = mySet;
-    cout << "mySet2's size: " << mySet2.size() << endl;
-    vector<char> setAsVector = mySet2.getAsVector();
-    for (int i = 0; i < setAsVector.size(); i++) {
-        cout << setAsVector[i] << endl;
+    ValSet<double> mySet2;
+    mySet2.add(5.6);
+    mySet2.add(1.2);
+    mySet2.add(3.4);
+    mySet2.add(7.8);
+    ValSet<double> mySetCombo = mySet + mySet2;
+    // cout << "mySetCombo's size: " << mySetCombo.size() << endl;
+    // cout << "mySetCombo is empty? : " << mySetCombo.isEmpty() << endl;
+     for (int i = 0; i < mySetCombo.size(); i++) {
+         cout << mySetCombo.arrayPointer[i] << endl;
+     }
+    ValSet<double> mySetIntersect = (mySet * mySet2);
+    cout << "mySetIntersect's size: " << mySetIntersect.size() << endl;
+    cout << "mySetIntersect is empty? : " << mySetIntersect.isEmpty() << endl;
+    cout << "Here are mySetIntersect's elements!" << endl;
+    for (int i = 0; i < mySetIntersect.size(); i++) {
+        cout << mySetIntersect.arrayPointer[i] << endl;
     }
+    cout << "Here are mySetDifference's elements!" << endl;
+    ValSet<double> mySetDifference = mySet / mySet2;
+    for (int i = 0; i < mySetDifference.size(); i++) {
+        cout << mySetDifference.arrayPointer[i] << endl;
+    } 
     return 0; 
 }
