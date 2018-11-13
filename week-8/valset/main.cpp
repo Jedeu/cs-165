@@ -19,13 +19,13 @@ int main()
     mySet2.add(5.6);
     mySet2.add(1.2);
     mySet2.add(3.4);
-    mySet2.add(7.8);
+    mySet2.add(6.7);
     ValSet<double> mySetCombo = mySet + mySet2;
-    // cout << "mySetCombo's size: " << mySetCombo.size() << endl;
-    // cout << "mySetCombo is empty? : " << mySetCombo.isEmpty() << endl;
-     for (int i = 0; i < mySetCombo.size(); i++) {
-         cout << mySetCombo.arrayPointer[i] << endl;
-     }
+    cout << "mySetCombo's size: " << mySetCombo.size() << endl;
+    cout << "mySetCombo is empty? : " << mySetCombo.isEmpty() << endl;
+    for (int i = 0; i < mySetCombo.size(); i++) {
+        cout << mySetCombo.arrayPointer[i] << endl;
+    }
     ValSet<double> mySetIntersect = (mySet * mySet2);
     cout << "mySetIntersect's size: " << mySetIntersect.size() << endl;
     cout << "mySetIntersect is empty? : " << mySetIntersect.isEmpty() << endl;
