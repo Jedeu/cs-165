@@ -9,11 +9,7 @@
  ***************************************************************************************/
 #include <vector>
 
-#include <iostream>
-
 using std::vector;
-using std::cout;
-using std::endl;
 
 #ifndef VALSET_HPP
 #define VALSET_HPP
@@ -45,6 +41,7 @@ class ValSet
         int currentSize;
 };
 #endif
+
 /************************************************************
  * Default constructor which initializes a pointer-to-T
  * array with size 10, numberofElements to 0, and the default
