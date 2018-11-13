@@ -215,8 +215,8 @@ ValSet<T> ValSet<T>::operator+(const ValSet& right)
 {
     ValSet<T> unionSet = *this;
     // Add all elements in the RHS to this arrayPointer's
-    // ValSet::add takes care of adding unique values so no need
-    // to check here.
+    // ValSet::add takes care of adding unique values only
+    // so no need to check here.
     for (int j = 0; j < right.size(); j++) {
         unionSet.add(right.arrayPointer[j]);
     }
@@ -238,8 +238,8 @@ ValSet<T> ValSet<T>::operator*(const ValSet& right)
         // Only keep elements that are found in both ValSets
         if (!right.contains(itemToCompare)) {
             intersectionSet.remove(itemToCompare);
-            // Because remove moves all values down the index by 1,
-            // we must reset the iterand by 1 to not miss any values.
+            // Because remove() moves all values down the index by 1,
+            // we must reduce the iterand by 1 to not miss any values.
             i -= 1;
         }
     }

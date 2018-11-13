@@ -15,6 +15,13 @@ int main()
     mySet.add(4.5);
     cout << "mySet is empty? " << mySet.isEmpty() << endl;
     cout << "mySet's new size? " << mySet.size() << endl;
+    cout << "Going to try and add 1.2 again" << endl;
+    cout << "mySet's size? " << mySet.size() << endl;
+    cout << "Removing 4.5 from mySet" << endl;
+    mySet.remove(4.5);
+    cout << "mySet's new size? " << mySet.size() << endl;
+    cout << "Re-adding 4.5 for testing" << endl;
+    mySet.add(4.5);
     ValSet<double> mySet2;
     mySet2.add(5.6);
     mySet2.add(1.2);
@@ -38,5 +45,9 @@ int main()
     for (int i = 0; i < mySetDifference.size(); i++) {
         cout << mySetDifference.arrayPointer[i] << endl;
     } 
+    vector<double> vectorDifference = mySetDifference.getAsVector();
+    for (int i = 0; i < vectorDifference.size(); i++) {
+        cout << vectorDifference[i] << endl;
+    }
     return 0; 
 }
