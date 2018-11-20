@@ -18,25 +18,30 @@ using std::vector;
 class StringList
 {
     private:   
-        struct ListNode {
-                string value;
-                ListNode *next;
+        struct ListNode 
+        {
+            string value;
+            ListNode *next;
             ListNode(string value, ListNode *next = nullptr)
             {
                 this->value = value;
                 this->next = next;
             }
-        }
+        };
         // List head pointer
         ListNode *head; 
     public:
         StringList();
         // Destructor
         ~StringList();
-        // Copy constructor
-        StringList(StringList& );
         void add(string);
         int positionOf(string);
         bool setNodeVal(int, string);
         vector<string> getAsVector(); 
-}
+        // Copy constructor
+        StringList(const StringList&);
+    private:
+       int size;
+};
+
+#endif
