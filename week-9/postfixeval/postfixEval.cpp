@@ -11,7 +11,10 @@
 #include <stack>
 #include <cctype>
 #include <cstdlib>
+#include <iostream>
 
+using std::cout;
+using std::endl;
 using std::stack;
 using std::strtok;
 using std::atof;
