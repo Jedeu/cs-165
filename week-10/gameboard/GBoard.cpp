@@ -8,6 +8,10 @@
 #include "GBoard.hpp"
 #include <cctype>
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 using std::tolower;
 
 GBoard::GBoard()
@@ -118,97 +122,135 @@ void GBoard::setGameState(int row, int column, char playerPiece)
  * *****************************************************************************/
 bool GBoard::matchVert(int row, int column, char playerPiece)
 {
+    // We use a counter to handle the edge-case that
+    // the piece that completes the series of 5 is not the first or last
+    int counter = 0;
+
     // Only access the following indices as long as we don't go out of bounds
-    // Notice that we don't do else ifs here because we want to check both directions!
-    if (row + 4 < size) {
-        // We only check the next 4 spots because we already know what
-        // piece is played on the current spot
-        if (board[row + 1][column] == playerPiece && board[row + 2][column] == playerPiece
-                && board[row + 3][column] == playerPiece && board[row + 4][column] == playerPiece) {
-            return true;
+    // Notice that we don't do else ifs here because we want to check both directions! 
+    // We only check the next 4 spots because we already know what
+    // piece is played on the current spot
+    for (int i = row + 1; i < row + 5; i++) {
+        if (board[i][column] == playerPiece && i < size) {
+            counter++;
+        } else {
+            // Break in case we encounter the other player's stuff or go out of bounds
+            break;
         }
     }
-    // Don't go out of bounds when checking previous rows
-    if (row - 4 >= 0) {
-        // See above about only checking 4 spots
-        if (board[row - 1][column] == playerPiece && board[row - 2][column] == playerPiece
-            && board[row - 3][column] == playerPiece && board[row - 4][column] == playerPiece) {
-            return true;
+    
+    // Same logic as above but going up the board instead
+    for (int i = row - 1; i > row - 5; i--) {
+        if (board[i][column] == playerPiece && i >= 0) {
+            counter++;
+        } else {
+            break;
         }
     }
 
-    return false;
+    if (counter == 4) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /********************************************************************************
- * Checks if the player has 5 in a row left or rightfrom the last piece. 
+ * Checks if the player has 5 in a row left or right from the last piece. 
+ * Uses similar logic as matchVert counting the number of pieces it finds adjacent
  * Returns true if we have a match
  * *****************************************************************************/
 bool GBoard::matchHoriz(int row, int column, char playerPiece)
 {
-    // As in matchVert, we check boundaries before checking if we get 5 in a row since C++
-    // doesn't do any bounds checking
+    int counter = 0;
+
     // Again, no else ifs because we want to check both directions
-    if (column + 4 < size) {
-        // Also just like matchVert, we only check 4 spots because we know that 5th spot was just
-        // potentially played
-        if (board[row][column + 1] == playerPiece && board[row][column + 2] == playerPiece
-                && board[row][column + 3] == playerPiece && board[row][column + 4] == playerPiece) {
-            return true;
-        }
-    }
-    // See above, but this is for checking a 5 in the row to the left of the piece.
-    if (column - 4 >= 0) { 
-        if (board[row][column - 1] == playerPiece && board[row][column - 2] == playerPiece
-                && board[row][column - 3] == playerPiece && board[row][column - 4] == playerPiece) {
-            return true;
+    // Also just like matchVert, we only check for 4 spots while still staying in the bounds
+    // of the board since we know the last piece played 
+    for (int i = column + 1; i < column + 5; i++) {
+        if (board[row][i] == playerPiece && i < size) {
+            counter++;
+        } else {
+            break;
         }
     }
 
-    return false;
+    // See above, but this is for checking a 5 in the row to the left of the piece.
+    for (int i = column - 1; i > column - 5; i--) {
+        if (board[row][i] == playerPiece && i >= 0) {
+            counter++;
+        } else {
+            break;
+        }
+    }
+
+    if (counter == 4) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /********************************************************************************
- * Checks if the player has 5 in a row diagonally.  
- * Returns true if we have a match
+ * Checks if the player has 5 in a row diagonally. This works differently from
+ * horizontal or vertical because we have to check '/' diagonals and '\' diagonals.
+ * After we check one diagonal, we reset the counter to 0 before checking the other
+ * one. 
+ * Returns true if we have a match.
  * *****************************************************************************/
 bool GBoard::matchDiag(int row, int column, char playerPiece) 
 {
-    // Again, no else if statements here because we want to check all diagonal directions from
-    // the piece that was last played!
+    int counter = 0;
+     
+    // '/' diagonals
+    // For the upper-right portion, rows increase and columns decrease
+    for (int i = row - 1, j = column + 1; i > row - 5 && j < column + 5; i--, j++) {
+        if (board[i][j] == playerPiece && i >= 0 && j < size) {
+            counter++;
+        } else {
+            break;
+        }
+    }  
+    // For the lower-left portion, it's the opposite.
+    for (int i = row + 1, j = column - 1; i < row + 5 && j > column - 5; i++, j--) {
+        if (board[i][j] == playerPiece && i < size && j >= 0) {
+            counter++;
+        } else {
+            break;
+        }
+    }
 
-    // upper-right diagonals
-    // Columns increase and rows decrease
-    if (column + 4 < size && row - 4 >= 0) {
-        if (board[row - 1][column + 1] == playerPiece && board[row - 2][column + 2] == playerPiece 
-                && board[row - 3][column + 3] == playerPiece && board[row - 4][column + 4] == playerPiece) {
-            return true;
+    // Check if we found 4 pieces to make '/'. If not, reset counter to 0 and check other diagonal
+    if (counter == 4) {
+        return true;
+    } else {
+        counter = 0;
+    }
+
+    // '\' diagonals
+    // For the lower-right portion, columns increase and rows increase
+    for (int i = row + 1, j = column + 1; i < row + 5 && j < column + 5; i++, j++) {
+        if (board[i][j] == playerPiece && i < size && j < size) {
+            counter++;
+        } else {
+            break;
         }
     } 
-    // lower-right diagonals
-    // columns increase and rows increase
-    if (column + 4 < size && row + 4 < size) {
-        if (board[row + 1][column + 1] == playerPiece && board[row + 2][column + 2] == playerPiece
-                && board[row + 3][column + 3] == playerPiece && board[row + 4][column + 4] == playerPiece) {
-            return true;
+    // For the upper-left portion, it's the opposite
+    for (int i = row - 1, j = column - 1; i > row - 5 && j > column - 5; i--, j--) {
+        if(board[i][j] == playerPiece && i >= 0 && j >= 0) {
+            counter++;
+        } else {
+            break;
         }
     }
-    // upper-left diagonals
-    // columns decrease and rows decrease
-    if (column - 4 >= 0 && row - 4 >= 0) {
-        if (board[row - 1][column - 1] == playerPiece && board[row - 2][column - 2] == playerPiece
-                && board[row - 3][column - 3] == playerPiece && board[row - 4][column - 4] == playerPiece) {
-            return true;
-        }
-    }
-    // lower-left diagonals
-    // columns decrease and rows increase
-    if (column - 4 >= 0 && row + 4 < size) {
-        if (board[row + 1][column - 1] == playerPiece && board[row + 2][column - 2] == playerPiece
-                && board[row + 3][column - 3] == playerPiece && board[row + 4][column - 4] == playerPiece) {
-            return true;
-        }
-    }
+  
+    // Final check if counter is 4 
+    if (counter == 4) {
+        return true;
+    } 
     
+    // Otherwise return false for the whole method call
     return false;
+       
 }
